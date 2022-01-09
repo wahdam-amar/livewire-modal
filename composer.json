@@ -1,0 +1,23 @@
+{
+    "name": "wahdam/livewire-modal",
+    "authors": [
+        {
+            "name": "wahdam",
+            "email": "wahdam.amarulloh@gmail.com"
+        }
+    ],
+    "require": {},
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Wahdam\\LivewireModal\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Wahdam\\LivewireModal\\LivewireModalServiceProvider"
+            ]
+        }
+    }
+}
