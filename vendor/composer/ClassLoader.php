@@ -45,21 +45,21 @@ class ClassLoader
     private $vendorDir;
 
     // PSR-4
-    private $prefixLengthsPsr4 = array();
-    private $prefixDirsPsr4 = array();
-    private $fallbackDirsPsr4 = array();
+    private $prefixLengthsPsr4 = [];
+    private $prefixDirsPsr4 = [];
+    private $fallbackDirsPsr4 = [];
 
     // PSR-0
-    private $prefixesPsr0 = array();
-    private $fallbackDirsPsr0 = array();
+    private $prefixesPsr0 = [];
+    private $fallbackDirsPsr0 = [];
 
     private $useIncludePath = false;
-    private $classMap = array();
+    private $classMap = [];
     private $classMapAuthoritative = false;
-    private $missingClasses = array();
+    private $missingClasses = [];
     private $apcuPrefix;
 
-    private static $registeredLoaders = array();
+    private static $registeredLoaders = [];
 
     public function __construct($vendorDir = null)
     {
@@ -68,11 +68,11 @@ class ClassLoader
 
     public function getPrefixes()
     {
-        if (!empty($this->prefixesPsr0)) {
+        if (! empty($this->prefixesPsr0)) {
             return call_user_func_array('array_merge', array_values($this->prefixesPsr0));
         }
 
-        return array();
+        return [];
     }
 
     public function getPrefixesPsr4()
@@ -117,7 +117,7 @@ class ClassLoader
      */
     public function add($prefix, $paths, $prepend = false)
     {
-        if (!$prefix) {
+        if (! $prefix) {
             if ($prepend) {
                 $this->fallbackDirsPsr0 = array_merge(
                     (array) $paths,
@@ -134,7 +134,7 @@ class ClassLoader
         }
 
         $first = $prefix[0];
-        if (!isset($this->prefixesPsr0[$first][$prefix])) {
+        if (! isset($this->prefixesPsr0[$first][$prefix])) {
             $this->prefixesPsr0[$first][$prefix] = (array) $paths;
 
             return;
@@ -164,7 +164,7 @@ class ClassLoader
      */
     public function addPsr4($prefix, $paths, $prepend = false)
     {
-        if (!$prefix) {
+        if (! $prefix) {
             // Register directories for the root namespace.
             if ($prepend) {
                 $this->fallbackDirsPsr4 = array_merge(
@@ -177,7 +177,7 @@ class ClassLoader
                     (array) $paths
                 );
             }
-        } elseif (!isset($this->prefixDirsPsr4[$prefix])) {
+        } elseif (! isset($this->prefixDirsPsr4[$prefix])) {
             // Register directories for a new namespace.
             $length = strlen($prefix);
             if ('\\' !== $prefix[$length - 1]) {
@@ -209,7 +209,7 @@ class ClassLoader
      */
     public function set($prefix, $paths)
     {
-        if (!$prefix) {
+        if (! $prefix) {
             $this->fallbackDirsPsr0 = (array) $paths;
         } else {
             $this->prefixesPsr0[$prefix[0]][$prefix] = (array) $paths;
@@ -227,7 +227,7 @@ class ClassLoader
      */
     public function setPsr4($prefix, $paths)
     {
-        if (!$prefix) {
+        if (! $prefix) {
             $this->fallbackDirsPsr4 = (array) $paths;
         } else {
             $length = strlen($prefix);
@@ -308,14 +308,14 @@ class ClassLoader
      */
     public function register($prepend = false)
     {
-        spl_autoload_register(array($this, 'loadClass'), true, $prepend);
+        spl_autoload_register([$this, 'loadClass'], true, $prepend);
 
         if (null === $this->vendorDir) {
             return;
         }
 
         if ($prepend) {
-            self::$registeredLoaders = array($this->vendorDir => $this) + self::$registeredLoaders;
+            self::$registeredLoaders = [$this->vendorDir => $this] + self::$registeredLoaders;
         } else {
             unset(self::$registeredLoaders[$this->vendorDir]);
             self::$registeredLoaders[$this->vendorDir] = $this;
@@ -327,7 +327,7 @@ class ClassLoader
      */
     public function unregister()
     {
-        spl_autoload_unregister(array($this, 'loadClass'));
+        spl_autoload_unregister([$this, 'loadClass']);
 
         if (null !== $this->vendorDir) {
             unset(self::$registeredLoaders[$this->vendorDir]);

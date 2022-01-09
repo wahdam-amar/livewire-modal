@@ -5,6 +5,6 @@
 $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
-return array(
-    'Wahdam\\LivewireModal\\' => array($baseDir . '/src'),
-);
+return [
+    'Wahdam\\LivewireModal\\' => [$baseDir . '/src'],
+];

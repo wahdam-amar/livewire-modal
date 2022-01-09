@@ -5,6 +5,6 @@
 $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
-return array(
+return [
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
-);
+];

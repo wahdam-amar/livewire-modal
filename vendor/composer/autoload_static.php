@@ -6,23 +6,23 @@ namespace Composer\Autoload;
 
 class ComposerStaticInita32ba0c1b2265b4206cf6fd961ce20b6
 {
-    public static $prefixLengthsPsr4 = array (
-        'W' => 
-        array (
+    public static $prefixLengthsPsr4 = [
+        'W' =>
+        [
             'Wahdam\\LivewireModal\\' => 21,
-        ),
-    );
+        ],
+    ];
 
-    public static $prefixDirsPsr4 = array (
-        'Wahdam\\LivewireModal\\' => 
-        array (
+    public static $prefixDirsPsr4 = [
+        'Wahdam\\LivewireModal\\' =>
+        [
             0 => __DIR__ . '/../..' . '/src',
-        ),
-    );
+        ],
+    ];
 
-    public static $classMap = array (
+    public static $classMap = [
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
-    );
+    ];
 
     public static function getInitializer(ClassLoader $loader)
     {
@@ -30,7 +30,6 @@ class ComposerStaticInita32ba0c1b2265b4206cf6fd961ce20b6
             $loader->prefixLengthsPsr4 = ComposerStaticInita32ba0c1b2265b4206cf6fd961ce20b6::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInita32ba0c1b2265b4206cf6fd961ce20b6::$prefixDirsPsr4;
             $loader->classMap = ComposerStaticInita32ba0c1b2265b4206cf6fd961ce20b6::$classMap;
-
         }, null, ClassLoader::class);
     }
 }
