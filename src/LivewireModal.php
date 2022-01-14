@@ -8,6 +8,7 @@ use Livewire\Component;
 abstract class LivewireModal extends Component
 {
     public bool $isOpen = false;
+    public bool $autoClose = true;
 
     public $attributes = [];
 
@@ -15,9 +16,9 @@ abstract class LivewireModal extends Component
         'toggleModal' => 'toggleModal',
     ];
 
-    abstract public function title(): String;
+    abstract public function title();
 
-    abstract public function content(): String;
+    abstract public function content();
 
     public function beforeOpen()
     {
@@ -48,9 +49,9 @@ abstract class LivewireModal extends Component
         return array_pop($path);
     }
 
-    public function __construct($id = null)
+    public function __construct()
     {
-        parent::__construct($id);
+        parent::__construct();
     }
 
     public function render()
